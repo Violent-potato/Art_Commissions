@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="base.css">
+    <title>Sketch</title>
+</head>
+<body>
+
+<h1>Sketch</h1>
+
+<nav>
+    <a href="index.html">Back</a>
+</nav>
+
+<div class="detail-container">
+    <div class="card-static">
+        <img src="Commission_pictures/sketch.png" alt="Carte 1">
+    </div>
+
+    <div class="detail-text">
+        <p><strong>Head</strong> : <span id="price-head">...</span>€</p>
+        <p><strong>Chest</strong> : <span id="price-chest">...</span>€</p>
+        <p><strong>Full</strong> : <span id="price-full">...</span>€</p>
+
+        <p>I can draw self-ships, OCs, gore and more!</p>
+
+        <p><strong>Info:</strong> I reserve the right to refuse a commission if I'm uncomfortable with it</p>
+    </div>
+</div>
+
+
+<div class="detail-text" style="margin-top: 20px;">
+    <p>Additional characters: <strong>25%</strong> of the original price will be added for each extra character.</p>
+    <p>Background price may vary between <strong>1€</strong> and <strong>10€</strong> depending on the complexity.</p>
+</div>
+
+<script>
+fetch('../prices.json')
+    .then(response => response.json())
+    .then(data => {
+        const sketch = data["sketch"];
+
+        if (sketch) {
+            document.getElementById("price-head").textContent = sketch.head;
+            document.getElementById("price-chest").textContent = sketch.bust;
+            document.getElementById("price-full").textContent = sketch.full;
+        }
+    })
+    .catch(error => console.error("Erreur chargement JSON :", error));
+</script>
+</body>
+</html>

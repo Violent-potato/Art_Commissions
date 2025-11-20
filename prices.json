@@ -1,0 +1,6 @@
+{
+  "sketch": {"head": 5, "bust": 8, "full": 10},
+  "lineart": {"head": 8, "bust": 11, "full": 16},
+  "flat": {"head": 11, "bust": 14, "full": 22},
+  "render": {"head": 14, "bust": 15, "full": 28}
+}

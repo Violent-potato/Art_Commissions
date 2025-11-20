@@ -1,14 +1,109 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="base.css">
     <title>Commission_page</title>
-
 </head>
 <body>
 
-    <h1>Hello world</h1>
+    <header class="title-wrapper">
+        <img src="bubule.png" class="title-img" alt="Left image">
+        <h1>Commission open!!</h1>
+        <img src="bubule.png" class="title-img" alt="Right image">
+    </header>
+
+    <nav>
+        <a href="simulation.html">Simulation</a>
+        <a href="portfolio.html">Portfolio</a>
+    </nav>
+
+    <div class="cards-container">
+
+        <div class="card-block" data-category="sketch">
+            <h3>Sketch</h3>
+            <a href="sketch.html">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="Commission_pictures/sketch.png" alt="">
+                        </div>
+                        <div class="card-back">
+                            <p class="card-price">Chargement...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="card-block" data-category="lineart">
+            <h3>Lineart</h3>
+            <a href="lineart.html">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="Commission_pictures/lineart.png" alt="">
+                        </div>
+                        <div class="card-back">
+                            <p class="card-price">Chargement...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="card-block" data-category="flat">
+            <h3>Flat</h3>
+            <a href="flat.html">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="Commission_pictures/flat.png" alt="">
+                        </div>
+                        <div class="card-back">
+                            <p class="card-price">Chargement...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="card-block" data-category="render">
+            <h3>Render</h3>
+            <a href="render.html">
+                <div class="card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="Commission_pictures/render.png" alt="">
+                        </div>
+                        <div class="card-back">
+                            <p class="card-price">Chargement...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+<script>
+fetch('prices.json')
+    .then(resp => resp.json())
+    .then(data => {
+
+        document.querySelectorAll('.card-block').forEach(card => {
+            const category = card.dataset.category;
+            if (data[category]) {
+                const values = Object.values(data[category]);
+                const minPrice = Math.min(...values);
+                const maxPrice = Math.max(...values);
+                card.querySelector('.card-price').textContent =
+                    `Price : between ${minPrice}€ and ${maxPrice}€`;
+            }
+        });
+    })
+    .catch(err => console.error("Erreur JSON :", err));
+</script>
+
 </body>
 </html>
