@@ -39,6 +39,19 @@
     <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
 </h2>
 
+<script>
+fetch('prices.json')
+    .then(response => response.json())
+    .then(data => {
+        const flat = data["flat"];
 
+        if (flat) {
+            document.getElementById("price-head").textContent = flat.head;
+            document.getElementById("price-chest").textContent = flat.bust;
+            document.getElementById("price-full").textContent = flat.full;
+        }
+    })
+    .catch(error => console.error("Erreur chargement JSON :", error));
+</script>
 </body>
 </html>
