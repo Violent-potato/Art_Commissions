@@ -13,31 +13,42 @@
     <a href="index.html">Back</a>
 </nav>
 
-<div class="detail-container">
-    <div class="card-static">
-        <img src="Commission_pictures/render.png" alt="Carte 4">
+<div class="detail-wrapper">
+
+    <div class="detail-container">
+
+        <div class="card-static">
+            <img src="Commission_pictures/render.png" alt="Carte 4">
+        </div>
+
+        <div class="detail-column">
+
+            <div class="detail-text">
+                <p><strong>Head</strong> : <span id="price-head">...</span>€</p>
+                <p><strong>Chest</strong> : <span id="price-chest">...</span>€</p>
+                <p><strong>Full</strong> : <span id="price-full">...</span>€</p>
+
+                <p>I can draw self-ships, OCs, gore and more!</p>
+
+                <p><strong>Info:</strong> I reserve the right to refuse a commission if I'm uncomfortable with it</p>
+            </div>
+
+            <div class="detail-text">
+                <p>Additional characters: <strong>25%</strong> of the original price will be added for each extra character.</p>
+                <p>Background price may vary between <strong>1€</strong> and <strong>10€</strong> depending on the complexity.</p>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="detail-text">
-        <p><strong>Head</strong> : <span id="price-head">...</span>€</p>
-        <p><strong>Chest</strong> : <span id="price-chest">...</span>€</p>
-        <p><strong>Full</strong> : <span id="price-full">...</span>€</p>
-
-        <p>I can draw self-ships, OCs, gore and more!</p>
-
-        <p><strong>Info:</strong> I reserve the right to refuse a commission if I'm uncomfortable with it</p>
-    </div>
 </div>
 
-<div class="detail-text" style="margin-top: 20px;">
-    <p>Additional characters: <strong>25%</strong> of the original price will be added for each extra character.</p>
-    <p>Background price may vary between <strong>1€</strong> and <strong>10€</strong> depending on the complexity.</p>
-</div>
-
-<h2 class="contact-text">
+<h4 class="contact-text">
     If you're interested, you can contact me on
     <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
-</h2>
+</h4>
+
 <script>
 fetch('prices.json')
     .then(response => response.json())

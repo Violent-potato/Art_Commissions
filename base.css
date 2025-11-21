@@ -106,13 +106,6 @@ nav a {
     color: inherit;
 }
 
-.detail-container {
-    display: flex;
-    gap: 30px;
-    width: 80%;
-    margin: 40px auto;
-    align-items: flex-start;
-}
 
 .card-static {
     width: 40%;
@@ -204,4 +197,34 @@ h4.contact-text {
     -webkit-text-fill-color: transparent;
     text-align: center;
     padding: 10px;
+}
+.detail-wrapper {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.detail-container {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+}
+
+.card-static {
+    width: 40%;
+    flex-shrink: 0;
+}
+
+.detail-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90%;
+    align-items: flex-end;
 }
