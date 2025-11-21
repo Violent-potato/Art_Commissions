@@ -186,12 +186,13 @@ h2{
 }
 .contact-text {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
+    margin-top: 20px;
 }
 
 .contact-link {
     font-family: "Brush Script MT", cursive;
-    font-size: 1.7em;
+    font-size: 1.2em;
     text-decoration: underline;
     color: #2d4c82;
 }
