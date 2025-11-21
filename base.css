@@ -140,10 +140,13 @@ nav a {
 
 h4.contact-text {
     text-align: center;
+    font-family: "Brush Script MT", cursive;
     font-size: 2em;
     margin-top: 20px;
 }
-
+h4{
+    text-align: center;
+}
 .contact-link {
     font-family: "Brush Script MT", cursive;
     font-size: 1.2em;
