@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="base.css">
-    <title>Render</title>
+    <title>Flat</title>
 </head>
 <body>
 
-<h1>Render</h1>
+<h1>Flat</h1>
 
 <nav>
     <a href="index.html">Back</a>
@@ -15,7 +15,7 @@
 
 <div class="detail-container">
     <div class="card-static">
-        <img src="Commission_pictures/render.png" alt="Carte 4">
+        <img src="Commission_pictures/flat.png" alt="Carte 3">
     </div>
 
     <div class="detail-text">
@@ -38,16 +38,17 @@
     If you're interested, you can contact me on
     <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
 </h2>
+
 <script>
 fetch('/prices.json')
     .then(response => response.json())
     .then(data => {
-        const render = data["render"];
+        const flat = data["flat"];
 
-        if (render) {
-            document.getElementById("price-head").textContent = render.head;
-            document.getElementById("price-chest").textContent = render.bust;
-            document.getElementById("price-full").textContent = render.full;
+        if (flat) {
+            document.getElementById("price-head").textContent = flat.head;
+            document.getElementById("price-chest").textContent = flat.bust;
+            document.getElementById("price-full").textContent = flat.full;
         }
     })
     .catch(error => console.error("Erreur chargement JSON :", error));
