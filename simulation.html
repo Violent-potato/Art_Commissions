@@ -27,14 +27,12 @@
 
 <div class="encadre" id="category-section">
     <h2>Now pick your style</h2>
-    <div class="category-options" id="category-options">
-    </div>
+    <div class="category-options" id="category-options"></div>
 </div>
 
 <div class="encadre" id="detail-section">
     <h2>Detail</h2>
-    <div class="details-options" id="details-options">
-    </div>
+    <div class="details-options" id="details-options"></div>
 </div>
 
 <div id="total-price"></div>
@@ -99,7 +97,6 @@ function validateBudget() {
     }
 }
 
-
 function selectCategory(cat) {
     selectedCategory = cat;
     selectedDetail = null;
@@ -111,23 +108,34 @@ function selectCategory(cat) {
 
     const detailsDiv = document.getElementById('details-options');
     detailsDiv.innerHTML = '';
-    ['head', 'bust', 'full'].forEach(part => {
-        const div = document.createElement('div');
-        div.classList.add('detail-item-circle');
-        div.textContent = part.charAt(0).toUpperCase() + part.slice(1);
-        div.onclick = () => selectDetail(part);
-        detailsDiv.appendChild(div);
-        let displayText = part === 'bust' ? 'Chest' : part.charAt(0).toUpperCase() + part.slice(1);
 
-    div.textContent = displayText;
-    div.onclick = () => selectDetail(part);
-    detailsDiv.appendChild(div);
+    const budget = parseFloat(document.getElementById('budget').value);
+
+    const detailOrder = ['head', 'bust', 'full'];
+
+    detailOrder.forEach(part => {
+        const cost = prices[cat][part];
+
+        if (cost <= budget) {
+            const div = document.createElement('div');
+            div.classList.add('detail-item-circle');
+
+            div.dataset.part = part;
+
+            let displayText = part === 'bust' ? 'Chest'
+                : part.charAt(0).toUpperCase() + part.slice(1);
+
+            div.textContent = displayText;
+            div.onclick = () => selectDetail(part);
+            detailsDiv.appendChild(div);
+        }
     });
+
     detailsDiv.style.display = 'flex';
     document.getElementById('total-price').style.display = 'none';
-    document.getElementById('detail-section')
-    .scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+    document.getElementById('detail-section')
+        .scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function selectDetail(part) {
@@ -135,7 +143,7 @@ function selectDetail(part) {
 
     const allDetails = document.querySelectorAll('.detail-item-circle');
     allDetails.forEach(d => {
-        d.classList.toggle('selected', d.textContent.toLowerCase() === part);
+        d.classList.toggle('selected', d.dataset.part === part);
     });
 
     if (selectedCategory && selectedDetail) {
