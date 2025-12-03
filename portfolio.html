@@ -3,11 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap">
     <title>Portfolio</title>
 </head>
 <body>
+    <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div id="sidebar">
+        <h3>Main pages</h3>
+        <a href="index.html">Back to index</a>
+        <a href="budget_simulation.html">Budget simulator</a>
+        <a href="commission_guide.html">Commission guide</a>
+    <h3>Prices</h3>
+        <a href="sketch.html">Sketch prices</a>
+        <a href="lineart.html">Lineart prices</a>
+        <a href="flat.html">Flat prices</a>
+        <a href="render.html">Render prices</a>
+        <hr>
+        <h3>Contact Me</h3>
+        <a href="https://www.tumblr.com/blog/noveltale">Tumblr</a>
+        <a href="https://www.instagram.com/suteki_koneko_/">Instagram</a>
+    </div>
     <h1>Portfolio</h1>
     <nav>
         <a href="index.html">Back</a>
@@ -40,6 +58,10 @@
     <a href="https://www.instagram.com/suteki_koneko_/" class="contact-link">Instagram</a>
 </h4>
     <script>
+        function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('visible');
+}
         const container = document.getElementById('drawings-container');
 
         let drawings = [];
