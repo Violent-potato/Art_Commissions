@@ -11,7 +11,6 @@
 <body>
     <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
-    <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()"></button>
 
     <div id="sidebar">
         <h3>Main pages</h3>
@@ -33,7 +32,10 @@
         <h1>Budget simulator</h1>
         <img src="bubule.png" class="title-img" alt="Right image">
     </header>
-
+    <div class="accessibility-controls">
+        <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()">Astigmate mode (deactivated)</button>
+        <button id="colorblind-toggle" aria-pressed="false" onclick="toggleColorblindMode()">Daltonien mode (deactivated)</button>
+    </div>
 
 <nav>
     <a href="index.html">Back</a>
@@ -66,38 +68,68 @@
 </div>
 <script>
     function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('visible');
-}
-
-// --- NOUVEAU : Logique du Mode Astigmate Persistant ---
-const STORAGE_KEY = 'astigmatismModeActive';
-const body = document.body;
-const accessToggleButton = document.getElementById('access-toggle');
-
-function updateAccessButton(isActive) {
-    if (accessToggleButton) {
-        accessToggleButton.setAttribute('aria-pressed', isActive);
-        accessToggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('visible');
     }
-}
 
-function toggleAstigmatismMode() {
-    const isActive = body.classList.toggle('astigmatism-mode');
-    localStorage.setItem(STORAGE_KEY, isActive);
-    updateAccessButton(isActive);
-}
+    const body = document.body;
 
-function loadAstigmatismMode() {
-    const isActive = localStorage.getItem(STORAGE_KEY) === 'true';
-    if (isActive) {
-        body.classList.add('astigmatism-mode');
+    const ASTIG_STORAGE_KEY = 'astigmatismModeActive';
+    const accessToggleButton = document.getElementById('access-toggle');
+
+    function updateAstigmatismButton(isActive) {
+        if (accessToggleButton) {
+            accessToggleButton.setAttribute('aria-pressed', isActive);
+            accessToggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
+        }
     }
-    updateAccessButton(isActive);
-}
 
-loadAstigmatismMode();
-// --- FIN Mode Astigmate ---
+    function toggleAstigmatismMode() {
+        if (body.classList.contains('colorblind-mode')) {
+            toggleColorblindMode();
+        }
+        const isActive = body.classList.toggle('astigmatism-mode');
+        localStorage.setItem(ASTIG_STORAGE_KEY, isActive);
+        updateAstigmatismButton(isActive);
+    }
+
+    function loadAstigmatismMode() {
+        const isActive = localStorage.getItem(ASTIG_STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('astigmatism-mode');
+        }
+        updateAstigmatismButton(isActive);
+    }
+
+    const CB_STORAGE_KEY = 'colorblindModeActive';
+    const colorblindToggleButton = document.getElementById('colorblind-toggle');
+
+    function updateColorblindButton(isActive) {
+        if (colorblindToggleButton) {
+            colorblindToggleButton.setAttribute('aria-pressed', isActive);
+            colorblindToggleButton.textContent = isActive ? 'Daltonien mode (activated)' : 'Daltonien mode (deactivated)';
+        }
+    }
+
+    function toggleColorblindMode() {
+        if (body.classList.contains('astigmatism-mode')) {
+            toggleAstigmatismMode();
+        }
+        const isActive = body.classList.toggle('colorblind-mode');
+        localStorage.setItem(CB_STORAGE_KEY, isActive);
+        updateColorblindButton(isActive);
+    }
+
+    function loadColorblindMode() {
+        const isActive = localStorage.getItem(CB_STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('colorblind-mode');
+        }
+        updateColorblindButton(isActive);
+    }
+
+    loadAstigmatismMode();
+    loadColorblindMode();
 
 let prices = {};
 let selectedCategory = null;
@@ -187,7 +219,6 @@ function selectCategory(cat) {
 
     detailsDiv.style.display = 'flex';
     document.getElementById('total-price').style.display = 'none';
-    // Cacher le lien du guide lors du changement de catégorie
     document.getElementById('commission-guide-prompt').style.display = 'none';
 
     document.getElementById('detail-section')

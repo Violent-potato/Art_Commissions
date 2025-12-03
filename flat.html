@@ -9,7 +9,6 @@
 </head>
 <body>
 <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
-<button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()"></button>
 
     <div id="sidebar">
         <h3>Main pages</h3>
@@ -32,7 +31,10 @@
         <h1>Flat</h1>
         <img src="bubule.png" class="title-img" alt="Right image">
     </header>
-
+    <div class="accessibility-controls">
+        <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()">Astigmate mode (deactivated)</button>
+        <button id="colorblind-toggle" aria-pressed="false" onclick="toggleColorblindMode()">Daltonien mode (deactivated)</button>
+    </div>
 <nav>
     <a href="index.html">Back</a>
 </nav>
@@ -80,38 +82,69 @@
 </h4>
 
 <script>
-    const STORAGE_KEY = 'astigmatismModeActive';
-    const body = document.body;
-    const toggleButton = document.getElementById('access-toggle');
-
-    function updateButton(isActive) {
-        if (toggleButton) {
-            toggleButton.setAttribute('aria-pressed', isActive);
-            toggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
-        }
-    }
-
-    function toggleAstigmatismMode() {
-        const isActive = body.classList.toggle('astigmatism-mode');
-        localStorage.setItem(STORAGE_KEY, isActive);
-        updateButton(isActive);
-    }
-
-    function loadAstigmatismMode() {
-        const isActive = localStorage.getItem(STORAGE_KEY) === 'true';
-        if (isActive) {
-            body.classList.add('astigmatism-mode');
-        }
-        updateButton(isActive);
-    }
-
-    function toggleSidebar() {
+     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('visible');
     }
 
-    loadAstigmatismMode();
+    const body = document.body;
 
+    const ASTIG_STORAGE_KEY = 'astigmatismModeActive';
+    const accessToggleButton = document.getElementById('access-toggle');
+
+    function updateAstigmatismButton(isActive) {
+        if (accessToggleButton) {
+            accessToggleButton.setAttribute('aria-pressed', isActive);
+            accessToggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
+        }
+    }
+
+    function toggleAstigmatismMode() {
+        if (body.classList.contains('colorblind-mode')) {
+            toggleColorblindMode();
+        }
+        const isActive = body.classList.toggle('astigmatism-mode');
+        localStorage.setItem(ASTIG_STORAGE_KEY, isActive);
+        updateAstigmatismButton(isActive);
+    }
+
+    function loadAstigmatismMode() {
+        const isActive = localStorage.getItem(ASTIG_STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('astigmatism-mode');
+        }
+        updateAstigmatismButton(isActive);
+    }
+
+    const CB_STORAGE_KEY = 'colorblindModeActive';
+    const colorblindToggleButton = document.getElementById('colorblind-toggle');
+
+    function updateColorblindButton(isActive) {
+        if (colorblindToggleButton) {
+            colorblindToggleButton.setAttribute('aria-pressed', isActive);
+            colorblindToggleButton.textContent = isActive ? 'Daltonien mode (activated)' : 'Daltonien mode (deactivated)';
+        }
+    }
+
+    function toggleColorblindMode() {
+        if (body.classList.contains('astigmatism-mode')) {
+            toggleAstigmatismMode();
+        }
+        const isActive = body.classList.toggle('colorblind-mode');
+        localStorage.setItem(CB_STORAGE_KEY, isActive);
+        updateColorblindButton(isActive);
+    }
+
+    function loadColorblindMode() {
+        const isActive = localStorage.getItem(CB_STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('colorblind-mode');
+        }
+        updateColorblindButton(isActive);
+    }
+
+    loadAstigmatismMode();
+    loadColorblindMode();
     fetch('prices.json')
         .then(response => response.json())
         .then(data => {
