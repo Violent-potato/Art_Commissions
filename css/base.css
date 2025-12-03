@@ -324,6 +324,7 @@ h4{
     .card-static {
         width: 80%;
         margin-bottom: 20px;
+        box-sizing: border-box;
     }
 
     .detail-column {
@@ -335,6 +336,8 @@ h4{
 
     .detail-text {
         width: 90%;
+        padding: 15px;
+        box-sizing: border-box;
     }
 }
 
