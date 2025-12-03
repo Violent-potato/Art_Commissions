@@ -2,7 +2,71 @@ header {
     position: relative;
     z-index: 10;
 }
+#sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    left: -250px;
+    background-color: #1a1a1a;
+    padding-top: 25px;
+    transition: left 0.3s;
+    overflow-x: hidden;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+#sidebar.visible {
+    left: 0;
+}
+
+#sidebar a {
+    padding: 15px 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+}
+
+#sidebar a:hover {
+    color: #a335bc;
+}
+
+#sidebar h3 {
+    color: #99b7ed;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+#sidebar hr {
+    width: 80%;
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 10px 0;
+}
+
+#sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 30;
+    font-size: 30px;
+    cursor: pointer;
+    background: #2d4c82;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    line-height: 1;
+}
 
 body {
     margin: 0;
@@ -17,12 +81,12 @@ body {
 
 h1 {
     text-align: center;
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 5rem;
     background: linear-gradient(90deg, #2d4c82, #a335bc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1;
+    line-height: 1.2;
     padding: 0 10px;
 }
 
@@ -33,7 +97,7 @@ nav {
 
 nav a {
     text-align: center;
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 2rem;
     color: white;
     margin: 0 10px;
@@ -53,7 +117,7 @@ nav a {
     font-size: 2rem;
     font-weight: 600;
     color: white;
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
 }
 
 .card {
@@ -146,17 +210,17 @@ nav a {
 
 h4.contact-text {
     text-align: center;
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 2em;
     margin-top: 20px;
 }
 h4{
     text-align: center;
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 2em;
 }
 .contact-link {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 1.2em;
     text-decoration: underline;
     color: #2d4c82;
@@ -182,7 +246,7 @@ h4{
 }
 
 .card-price {
-    font-family: "Brush Script MT", cursive;
+    font-family: 'Great Vibes', cursive;
     font-size: 1.8rem;
     font-weight: bold;
     background: linear-gradient(90deg, #2d4c82, #a335bc);
@@ -267,7 +331,7 @@ h4{
     .detail-column {
         position: relative;
         width: 100%;
-        align-items: center;
+        align-items: flex-end;
     }
 
     .detail-text {

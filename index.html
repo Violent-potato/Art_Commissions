@@ -4,25 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap">
     <title>Commission_page</title>
 </head>
 <body>
+<button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
+    <div id="sidebar">
+        <h3>Main pages</h3>
+        <a href="index.html">Back to index</a>
+        <a href="budget_simulation.html">Budget simulator</a>
+        <a href="commission_guide.html">Commission guide</a>
+        <a href="portfolio.html">Portfolio</a>
+    <h3>Prices</h3>
+        <a href="sketch.html">Sketch prices</a>
+        <a href="lineart.html">Lineart prices</a>
+        <a href="flat.html">Flat prices</a>
+        <a href="render.html">Render prices</a>
+        <hr>
+        <h3>Contact Me</h3>
+        <a href="https://www.tumblr.com/blog/noveltale">Tumblr</a>
+        <a href="https://www.instagram.com/suteki_koneko_/">Instagram</a>
+    </div>
     <header class="title-wrapper">
         <img src="bubule.png" class="title-img" alt="Left image">
         <h1>Commission open!!</h1>
         <img src="bubule.png" class="title-img" alt="Right image">
     </header>
-    <h4>
-        If you're interested, you can contact me on
-    <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
-    or
-    <a href="https://www.instagram.com/suteki_koneko_/" class="contact-link">Instagram</a>
-    </h4>
-    <nav>
-        <a href="simulation.html">Simulation</a>
-        <a href="portfolio.html">Portfolio</a>
-    </nav>
+
 
     <div class="cards-container">
 
@@ -100,6 +109,10 @@
 </h4>
 
 <script>
+    function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('visible');
+}
 fetch('prices.json')
     .then(resp => resp.json())
     .then(data => {
@@ -110,7 +123,7 @@ fetch('prices.json')
                 const minPrice = Math.min(...values);
                 const maxPrice = Math.max(...values);
                 card.querySelector('.card-price').textContent =
-                    `Price : between ${minPrice}€ and ${maxPrice}€`;
+                    `Price : between  ${minPrice}€ and  ${maxPrice}€`;
             }
         });
     })
