@@ -246,7 +246,6 @@ h4{
 }
 
 .card-price {
-    /* Correction de la police pour le prix */
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: bold;
@@ -339,36 +338,61 @@ h4{
 }
 
 
-/*=== STYLES POUR L'ACCESSIBILITÉ (ASTIGMATISME) === */
+.accessibility-controls {
+    text-align: center;
+    margin: 10px 0 20px 0;
+}
 
+#access-toggle,
+#colorblind-toggle {
+    position: static;
+    display: inline-block;
+    margin: 5px;
 
-#access-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 50;
-    padding: 10px 15px;
-    background: #a335bc;
-    color: white;
+    padding: 8px 15px;
+    background: #333;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
     font-weight: bold;
+    z-index: 30;
     transition: background 0.3s;
+    white-space: nowrap;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
 }
 
-#access-toggle[aria-pressed="true"] {
+#access-toggle[aria-pressed="true"],
+#colorblind-toggle[aria-pressed="true"] {
     background: #2d4c82;
 }
 
 
-/* Styles appliqués lorsque la classe est activée */
+.colorblind-mode h1,
+.colorblind-mode h2,
+.colorblind-mode h3,
+.colorblind-mode h4,
+.colorblind-mode p,
+.colorblind-mode span,
+.colorblind-mode a,
+.colorblind-mode li,
+.colorblind-mode button,
+.colorblind-mode div {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    background: none !important;
+}
+
+.colorblind-mode img {
+    color: initial !important;
+    -webkit-text-fill-color: initial !important;
+    background: initial !important;
+}
 
 
-/* Applique des polices plus lisibles et enlève les polices stylisées partout */
-.astigmatism-mode,
-.astigmatism-mode * {
+.astigmatism-mode *,
+.astigmatism-mode {
     font-family: Arial, Verdana, sans-serif !important;
     font-weight: 700 !important;
     letter-spacing: 0.05em;
@@ -376,7 +400,26 @@ h4{
     text-shadow: none !important;
 }
 
-/* Rétablit la taille des icônes/images/éléments non-textuels */
+.astigmatism-mode h1 {
+    font-family: Arial, Verdana, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 3rem !important;
+    background: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: initial !important;
+    text-shadow: 2px 2px 0 #000 !important;
+}
+
+.astigmatism-mode h2,
+.astigmatism-mode h3,
+.astigmatism-mode h4 {
+    font-size: 1rem !important;
+    background: none !important;
+    color: #fff !important;
+    -webkit-text-fill-color: initial !important;
+    text-shadow: 2px 2px 0 #000 !important;
+}
+
 .astigmatism-mode .title-img,
 .astigmatism-mode img,
 .astigmatism-mode i,
@@ -386,25 +429,19 @@ h4{
     font-weight: normal !important;
     letter-spacing: normal !important;
     line-height: normal !important;
+    font-size: initial !important;
 }
 
-/* Gère la couleur et le contraste pour une meilleure lisibilité (surtout pour les dégradés) */
-.astigmatism-mode h1,
-.astigmatism-mode h2,
-.astigmatism-mode h3,
-.astigmatism-mode h4 {
-    -webkit-text-fill-color: white !important;
-    background: none !important;
+.astigmatism-mode .card-front img,
+.astigmatism-mode .card-static img,
+.astigmatism-mode .title-img {
+    transform: scale(0.8) !important;
+    transform-origin: center center !important;
 }
 
-/* Assure que les liens et autres textes restent bien lisibles */
-.astigmatism-mode a {
-    text-decoration: underline !important;
-    font-weight: 700 !important;
+.astigmatism-mode .card-static {
+    width: 40% !important;
 }
-
-/* Spécifique à votre design: force la police standard dans la sidebar pour la lisibilité */
-.astigmatism-mode #sidebar a {
-    font-family: Arial, Verdana, sans-serif !important;
-    font-size: 1.3rem !important;
+.astigmatism-mode .detail-text {
+    width: 60% !important;
 }
