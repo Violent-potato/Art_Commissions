@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/commission_guide.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap">
+    <title>Commissioning Guide</title>
+</head>
+<body>
+
+    <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+    <div id="sidebar">
+        <h3>Main pages</h3>
+        <a href="index.html">Back to index</a>
+        <a href="budget_simulation.html">Budget simulator</a>
+        <a href="portfolio.html">Portfolio</a>
+    <h3>Prices</h3>
+        <a href="sketch.html">Sketch prices</a>
+        <a href="lineart.html">Lineart prices</a>
+        <a href="flat.html">Flat prices</a>
+        <a href="render.html">Render prices</a>
+        <hr>
+        <h3>Contact Me</h3>
+        <a href="https://www.tumblr.com/blog/noveltale">Tumblr</a>
+        <a href="https://www.instagram.com/suteki_koneko_/">Instagram</a>
+    </div>
+
+    <h1>How to commission a drawing</h1>
+
+    <div class="commission-wrapper">
+
+        <section class="encadre">
+            <h2>Step 1: Gather Your Ideas</h2>
+            <p>To ensure I can create the perfect piece for you, please prepare the following details before contacting me. The more specific you are, the better the final result will be!</p>
+
+            <div class="info-checklist">
+
+                <div class="checklist-item">
+                    <h3>Drawing Style (Rendering Type)</h3>
+                    <ul>
+                        <li><strong>Sketch:</strong> <span id="price-sketch">Loading price range...</span></li>
+                        <li><strong>Lineart:</strong> <span id="price-lineart">Loading price range...</span></li>
+                        <li><strong>Flat:</strong> <span id="price-flat">Loading price range...</span></li>
+                        <li><strong>Render:</strong> <span id="price-render">Loading price range...</span></li>
+                    </ul>
+                </div>
+
+                <div class="checklist-item">
+                    <h3>Character detail</h3>
+                    <ul>
+                        <li><strong>Head:</strong> Head and neck only.</li>
+                        <li><strong>Bust/Chest:</strong> Head and torso down to the chest area.</li>
+                        <li><strong>Full:</strong> The entire character, head to toe.</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-item">
+                    <h3>Additional details (Optional)</h3>
+                    <p>Consider if your commission requires these extras (which may affect the price):</p>
+                    <ul>
+                        <li><strong>Background:</strong> Do you want a simple color, a gradient, or a complex scene/environment?</li>
+                        <li><strong>Extra Character(s):</strong> <strong>25%</strong> of the original price will be added for each extra character.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="encadre">
+            <h2>Step 2: Prepare your references</h2>
+            <p>Visual aids can be helpful! Gather any materials that illustrate your vision. You can use:</p>
+            <ul>
+                <li><strong>Reference Images:</strong> Pictures of characters, outfits, poses, or expressions.</li>
+                <li><strong>Written Description:</strong> I think it's self-explanatory :)</li>
+            </ul>
+        </section>
+
+        <section class="encadre">
+            <h2>Step 3: Contact me</h2>
+            <p>Once you have gathered all the necessary information, send me a detailed commission request! Please include everything from <strong> step 1</strong> and <strong>step 2</strong>  in your message.</p>
+            <p class="final-note">We will discuss the specifics then proceed with half the payment! I'll update you on your commission and will request the other half payment once I'm finished.</p>
+        </section>
+
+    </div>
+
+<script>
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('visible');
+}
+
+fetch('prices.json')
+    .then(resp => resp.json())
+    .then(data => {
+        const categories = ['sketch', 'lineart', 'flat', 'render'];
+        categories.forEach(category => {
+            const priceElement = document.getElementById(`price-${category}`);
+            if (data[category]) {
+                const values = Object.values(data[category]);
+                const minPrice = Math.min(...values);
+                const maxPrice = Math.max(...values);
+                priceElement.textContent = ` ${minPrice}€ - ${maxPrice}€`;
+            } else {
+                priceElement.textContent = `Price unavailable`;
+            }
+        });
+    })
+    .catch(err => console.error("Erreur JSON :", err));
+</script>
+
+</body>
+</html>
