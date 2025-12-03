@@ -366,7 +366,6 @@ h4{
     background: #2d4c82;
 }
 
-/* --- Règle Daltonien (Corrigée) --- */
 .colorblind-mode #sidebar {
     background-color: black !important;
 }
@@ -377,13 +376,19 @@ h4{
 .colorblind-mode h4,
 .colorblind-mode p,
 .colorblind-mode span,
+.colorblind-mode strong,
 .colorblind-mode a,
 .colorblind-mode li,
 .colorblind-mode button,
 .colorblind-mode div {
-    color: #fff !important; 
+    color: #fff !important;
     -webkit-text-fill-color: #fff !important;
-    background: none !important; 
+    background: none !important;
+}
+
+.colorblind-mode #sidebar a:hover,
+.colorblind-mode .contact-link:hover {
+    color: #fff !important;
 }
 
 .colorblind-mode img {
