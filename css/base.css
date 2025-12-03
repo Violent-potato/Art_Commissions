@@ -366,6 +366,7 @@ h4{
     background: #2d4c82;
 }
 
+/* --- Règle Daltonien (Corrigée) --- */
 .colorblind-mode #sidebar {
     background-color: black !important;
 }
