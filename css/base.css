@@ -330,11 +330,11 @@ h4{
         position: static;
         width: 100%;
         right: auto;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .detail-text {
-        width: 100%;
+        width: 90%;
     }
 }
 
