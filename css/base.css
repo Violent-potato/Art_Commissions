@@ -199,6 +199,8 @@ nav a {
     line-height: 1.5;
     color: white;
     background-color: black;
+    /* FIX: Inclut le padding et la border dans la largeur totale */
+    box-sizing: border-box;
 }
 
 .detail-text strong {
