@@ -54,10 +54,9 @@
 
 <div id="total-price"></div>
 
-<h4> Want a commission? Go check out the
-    <b href="commission_guide.html" class="contact-link">commission guide</b>
-</h4>
-
+<div id="commission-guide-prompt" style="text-align: center; margin-top: 20px; display: none;">
+    <h4>Interested? Go check out the <a href="commission_guide.html" class="contact-link">commission guide</a></h4>
+</div>
 <script>
     function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
@@ -151,6 +150,8 @@ function selectCategory(cat) {
 
     detailsDiv.style.display = 'flex';
     document.getElementById('total-price').style.display = 'none';
+    // Cacher le lien du guide lors du changement de catégorie
+    document.getElementById('commission-guide-prompt').style.display = 'none';
 
     document.getElementById('detail-section')
         .scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -169,6 +170,8 @@ function selectDetail(part) {
         const totalDiv = document.getElementById('total-price');
         totalDiv.textContent = `This commission would cost ${price} €`;
         totalDiv.style.display = 'block';
+
+        document.getElementById('commission-guide-prompt').style.display = 'block';
 
         totalDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
