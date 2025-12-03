@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
     <title>Commission_page</title>
 </head>
 <body>
     <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()"></button>
 
     <div id="sidebar">
         <h3>Main pages</h3>
@@ -108,25 +110,53 @@
 </h4>
 
 <script>
+    const STORAGE_KEY = 'astigmatismModeActive';
+    const body = document.body;
+    const toggleButton = document.getElementById('access-toggle');
+
+    function updateButton(isActive) {
+        if (toggleButton) {
+            toggleButton.setAttribute('aria-pressed', isActive);
+            toggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
+        }
+    }
+
+    function toggleAstigmatismMode() {
+        const isActive = body.classList.toggle('astigmatism-mode');
+        localStorage.setItem(STORAGE_KEY, isActive);
+        updateButton(isActive);
+    }
+
+    function loadAstigmatismMode() {
+        const isActive = localStorage.getItem(STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('astigmatism-mode');
+        }
+        updateButton(isActive);
+    }
+
     function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('visible');
-}
-fetch('prices.json')
-    .then(resp => resp.json())
-    .then(data => {
-        document.querySelectorAll('.card-block').forEach(card => {
-            const category = card.dataset.category;
-            if (data[category]) {
-                const values = Object.values(data[category]);
-                const minPrice = Math.min(...values);
-                const maxPrice = Math.max(...values);
-                card.querySelector('.card-price').textContent =
-                    `Price : between  ${minPrice}€ and  ${maxPrice}€`;
-            }
-        });
-    })
-    .catch(err => console.error("Erreur JSON :", err));
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('visible');
+    }
+
+    loadAstigmatismMode();
+
+    fetch('prices.json')
+        .then(resp => resp.json())
+        .then(data => {
+            document.querySelectorAll('.card-block').forEach(card => {
+                const category = card.dataset.category;
+                if (data[category]) {
+                    const values = Object.values(data[category]);
+                    const minPrice = Math.min(...values);
+                    const maxPrice = Math.max(...values);
+                    card.querySelector('.card-price').textContent =
+                        `Price : between  ${minPrice}€ and  ${maxPrice}€`;
+                }
+            });
+        })
+        .catch(error => console.error("Erreur chargement JSON :", error));
 </script>
 
 </body>

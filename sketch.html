@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap">
     <title>Sketch</title>
 </head>
 <body>
@@ -15,6 +16,7 @@
     </header>
 
 <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+    <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()"></button>
 
     <div id="sidebar">
         <h3>Main pages</h3>
@@ -68,30 +70,52 @@
 
 </div>
 
-<h4 class="contact-text">
-    If you're interested, you can contact me on
-    <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
-    or
-    <a href="https://www.instagram.com/suteki_koneko_/" class="contact-link">Instagram</a>
-</h4>
 
 <script>
-    function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('visible');
-}
-fetch('prices.json')
-    .then(response => response.json())
-    .then(data => {
-        const sketch = data["sketch"];
+    const STORAGE_KEY = 'astigmatismModeActive';
+    const body = document.body;
+    const toggleButton = document.getElementById('access-toggle');
 
-        if (sketch) {
-            document.getElementById("price-head").textContent = sketch.head;
-            document.getElementById("price-chest").textContent = sketch.bust;
-            document.getElementById("price-full").textContent = sketch.full;
+    function updateButton(isActive) {
+        if (toggleButton) {
+            toggleButton.setAttribute('aria-pressed', isActive);
+            toggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
         }
-    })
-    .catch(error => console.error("Erreur chargement JSON :", error));
+    }
+
+    function toggleAstigmatismMode() {
+        const isActive = body.classList.toggle('astigmatism-mode');
+        localStorage.setItem(STORAGE_KEY, isActive);
+        updateButton(isActive);
+    }
+
+    function loadAstigmatismMode() {
+        const isActive = localStorage.getItem(STORAGE_KEY) === 'true';
+        if (isActive) {
+            body.classList.add('astigmatism-mode');
+        }
+        updateButton(isActive);
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('visible');
+    }
+
+    loadAstigmatismMode();
+
+    fetch('prices.json')
+        .then(response => response.json())
+        .then(data => {
+            const sketch = data["sketch"];
+
+            if (sketch) {
+                document.getElementById("price-head").textContent = sketch.head;
+                document.getElementById("price-chest").textContent = sketch.bust;
+                document.getElementById("price-full").textContent = sketch.full;
+            }
+        })
+        .catch(error => console.error("Erreur chargement JSON :", error));
 </script>
 
 </body>

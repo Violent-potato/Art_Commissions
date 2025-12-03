@@ -11,6 +11,8 @@
 <body>
     <button id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
 
+    <button id="access-toggle" aria-pressed="false" onclick="toggleAstigmatismMode()"></button>
+
     <div id="sidebar">
         <h3>Main pages</h3>
         <a href="index.html">Back to index</a>
@@ -67,6 +69,36 @@
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('visible');
 }
+
+// --- NOUVEAU : Logique du Mode Astigmate Persistant ---
+const STORAGE_KEY = 'astigmatismModeActive';
+const body = document.body;
+const accessToggleButton = document.getElementById('access-toggle');
+
+function updateAccessButton(isActive) {
+    if (accessToggleButton) {
+        accessToggleButton.setAttribute('aria-pressed', isActive);
+        accessToggleButton.textContent = isActive ? 'Astigmate mode (activated)' : 'Astigmate mode (deactivated)';
+    }
+}
+
+function toggleAstigmatismMode() {
+    const isActive = body.classList.toggle('astigmatism-mode');
+    localStorage.setItem(STORAGE_KEY, isActive);
+    updateAccessButton(isActive);
+}
+
+function loadAstigmatismMode() {
+    const isActive = localStorage.getItem(STORAGE_KEY) === 'true';
+    if (isActive) {
+        body.classList.add('astigmatism-mode');
+    }
+    updateAccessButton(isActive);
+}
+
+loadAstigmatismMode();
+// --- FIN Mode Astigmate ---
+
 let prices = {};
 let selectedCategory = null;
 let selectedDetail = null;
