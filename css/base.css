@@ -337,18 +337,16 @@ h4{
     }
 }
 
-
 .accessibility-controls {
-    text-align: center;
+    text-align: center; 
     margin: 10px 0 20px 0;
 }
 
 #access-toggle,
 #colorblind-toggle {
-    position: static;
+    position: static; 
     display: inline-block;
-    margin: 5px;
-
+    margin: 5px; 
     padding: 8px 15px;
     background: #333;
     color: #fff;
@@ -368,6 +366,9 @@ h4{
     background: #2d4c82;
 }
 
+.colorblind-mode #sidebar {
+    background-color: black !important;
+}
 
 .colorblind-mode h1,
 .colorblind-mode h2,
@@ -379,17 +380,16 @@ h4{
 .colorblind-mode li,
 .colorblind-mode button,
 .colorblind-mode div {
-    color: #fff !important;
+    color: #fff !important; 
     -webkit-text-fill-color: #fff !important;
-    background: none !important;
+    background: none !important; 
 }
 
 .colorblind-mode img {
-    color: initial !important;
+    color: initial !important; 
     -webkit-text-fill-color: initial !important;
-    background: initial !important;
+    background: initial !important; 
 }
-
 
 .astigmatism-mode *,
 .astigmatism-mode {
@@ -410,6 +410,10 @@ h4{
     text-shadow: 2px 2px 0 #000 !important;
 }
 
+.astigmatism-mode .title-img {
+    display: none !important;
+}
+
 .astigmatism-mode h2,
 .astigmatism-mode h3,
 .astigmatism-mode h4 {
@@ -420,7 +424,6 @@ h4{
     text-shadow: 2px 2px 0 #000 !important;
 }
 
-.astigmatism-mode .title-img,
 .astigmatism-mode img,
 .astigmatism-mode i,
 .astigmatism-mode span.material-icons,
@@ -430,18 +433,4 @@ h4{
     letter-spacing: normal !important;
     line-height: normal !important;
     font-size: initial !important;
-}
-
-.astigmatism-mode .card-front img,
-.astigmatism-mode .card-static img,
-.astigmatism-mode .title-img {
-    transform: scale(0.8) !important;
-    transform-origin: center center !important;
-}
-
-.astigmatism-mode .card-static {
-    width: 40% !important;
-}
-.astigmatism-mode .detail-text {
-    width: 60% !important;
 }
