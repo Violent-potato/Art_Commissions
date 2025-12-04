@@ -142,6 +142,11 @@
         }
         updateColorblindButton(isActive);
     }
+    document.addEventListener('contextmenu', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('.drawing')) {
+            e.preventDefault();
+            alert("Copyright protection : Image saving is not authorized");
+        }    });
 
     loadAstigmatismMode();
     loadColorblindMode();
