@@ -6,6 +6,11 @@
     flex-wrap: wrap;
 }
 
+h2 {
+    font-family: 'Playfair display', cursive;
+    font-size: 1rem;
+    color: #e2b1ed;
+}
 .switch-wrapper {
     display: flex;
     align-items: center;
