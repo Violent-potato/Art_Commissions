@@ -236,7 +236,7 @@ function selectDetail(part) {
     if (selectedCategory && selectedDetail) {
         const price = prices[selectedCategory][selectedDetail];
         const totalDiv = document.getElementById('total-price');
-        totalDiv.textContent = `This commission would cost ${price} €`;
+        totalDiv.textContent = `This commission would cost ${price} € (background not included)`;
         totalDiv.style.display = 'block';
 
         document.getElementById('commission-guide-prompt').style.display = 'block';
