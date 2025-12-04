@@ -10,6 +10,7 @@ h2 {
     font-family: 'Playfair display', cursive;
     font-size: 1rem;
     color: #e2b1ed;
+    text-align: center;
 }
 .switch-wrapper {
     display: flex;
