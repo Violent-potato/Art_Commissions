@@ -224,11 +224,11 @@ h4{
     font-family: 'Great Vibes', cursive;
     font-size: 1.2em;
     text-decoration: underline;
-    color: #2d4c82;
+    color: #a335bc;
 }
 
 .contact-link:hover {
-    color: #a335bc;
+    color: #2d4c82;
 }
 
 .title-wrapper {
