@@ -163,7 +163,7 @@
     loadAstigmatismMode();
     loadColorblindMode();
 
-    fetch('../../prices.json')
+    fetch('/prices.json')
         .then(resp => resp.json())
         .then(data => {
             const categories = ['sketch', 'lineart', 'flat', 'render'];
