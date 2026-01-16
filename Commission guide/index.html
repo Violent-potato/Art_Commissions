@@ -52,7 +52,7 @@
             <div class="info-checklist">
 
                 <div class="checklist-item">
-                    <h3>Drawing Style (Rendering Type) (ah ah test)</h3>
+                    <h3>Drawing Style (Rendering Type) </h3>
                     <ul>
                         <li><strong>Sketch:</strong> <span id="price-sketch">...</span></li>
                         <li><strong>Lineart:</strong> <span id="price-lineart">Chargement...</span></li>
@@ -163,7 +163,7 @@
     loadAstigmatismMode();
     loadColorblindMode();
 
-    fetch('/prices.json')
+    fetch('../prices.json')
         .then(resp => resp.json())
         .then(data => {
             const categories = ['sketch', 'lineart', 'flat', 'render'];
